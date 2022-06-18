@@ -1,30 +1,52 @@
 <template>
   <div class="App">
-    <SongSearchBar :allSongs="songs" />
-    <SelectedSongs />
+    <SongSearchBar
+      :allSongs="songs"
+      @selectedSong="(song) => selectedSongs.push(song)"
+    />
+    <SelectedSongsSidebar
+      :selectedSongs="selectedSongs"
+    />
   </div>
 </template>
 
 <script>
 import SongSearchBar from "./SongSearchBar";
-import SelectedSongs from "./SelectedSongs";
+import SelectedSongsSidebar from "./SelectedSongsSidebar";
 
 export default {
   name: "App",
   components: {
     SongSearchBar,
-    SelectedSongs
+    SelectedSongsSidebar
   },
   data() {
     return {
-      songs: this.loadSongs(),
+      songs: [],
+      selectedSongs: [],
     }
   },
   methods: {
+    /**
+     * Loads the songs
+     */
     loadSongs() {
-      return require("~/data-temp/songs.json")
+      this.songs = require("~/data-temp/songs.json")
     }
-  }
+  },
+  watch: {
+    /**
+     * if a song is selected, open the SelectedSongs Modal
+     * @param oldSongs
+     * @param newSongs
+     */
+    selectedSongs(oldSongs, newSongs) {
+
+    }
+  },
+  mounted() {
+    this.loadSongs();
+  },
 }
 </script>
 
