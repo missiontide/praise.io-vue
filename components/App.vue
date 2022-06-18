@@ -1,6 +1,6 @@
 <template>
   <div class="App">
-    <SongSearchBar />
+    <SongSearchBar :allSongs="songs" />
     <SelectedSongs />
   </div>
 </template>
@@ -15,7 +15,16 @@ export default {
     SongSearchBar,
     SelectedSongs
   },
-
+  data() {
+    return {
+      songs: this.loadSongs(),
+    }
+  },
+  methods: {
+    loadSongs() {
+      return require("~/data-temp/songs.json")
+    }
+  }
 }
 </script>
 
