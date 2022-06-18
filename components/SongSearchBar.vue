@@ -18,7 +18,13 @@
           <tr v-for="song in matchedSongs">
             <td>{{song.title}}</td>
             <td>{{song.artist}}</td>
-            <td><button @click="selectSong(song)">+</button></td>
+            <td>
+              <button
+                @click="selectSong(song)"
+                v-b-toggle.selected-songs-sidebar>
+                +
+              </button>
+            </td>
           </tr>
         </tbody>
       </Table>
@@ -34,7 +40,7 @@ export default {
   props: {
     allSongs: Array,
   },
-  emits: ['selectedSongs'],
+  emits: ['selectSong'],
   data() {
     return {
       searchInput: '',
@@ -67,8 +73,12 @@ export default {
       // fuse returns objects sorted by match .score, the object is in .item
       this.matchedSongs = searchResult.map(result => result['item'])
     },
+    /**
+     * Emits song-to-select to parent App
+     * @param song
+     */
     selectSong(song) {
-      this.$emit('selectedSong', song)
+      this.$emit('selectSong', song)
     }
   }
 }

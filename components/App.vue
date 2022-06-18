@@ -2,10 +2,12 @@
   <div class="App">
     <SongSearchBar
       :allSongs="songs"
-      @selectedSong="(song) => selectedSongs.push(song)"
+      @selectSong="(song) => this.selectedSongs.push(song)"
     />
     <SelectedSongsSidebar
       :selectedSongs="selectedSongs"
+      @removeSong="(index) => this.selectedSongs = this.selectedSongs.filter((s, i) => i !== index)"
+      @makeSlides="makeSlides()"
     />
   </div>
 </template>
@@ -32,15 +34,12 @@ export default {
      */
     loadSongs() {
       this.songs = require("~/data-temp/songs.json")
-    }
-  },
-  watch: {
+    },
     /**
-     * if a song is selected, open the SelectedSongs Modal
-     * @param oldSongs
-     * @param newSongs
+     * Sends all selected songs to slide maker util
      */
-    selectedSongs(oldSongs, newSongs) {
+    makeSlides() {
+      if (selectedSongs.length === 0) return
 
     }
   },
