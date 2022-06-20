@@ -43,8 +43,16 @@ export default {
      * Sends all selected songs to slide maker util
      */
     makeSlides() {
-      if (selectedSongs.length === 0) return
+      if (this.selectedSongs.length === 0) return
+      const selectedIds = []
+      this.selectedSongs.forEach(song => selectedIds.push(song.id))
 
+      axios.get(
+          'http://localhost:8080/song/lyrics?ids=' + selectedIds.join(',')
+      ).then(response => {
+        console.log(response.data);
+        // console.log(JSON.parse(response.data[0]['lyrics']));
+      });
     }
   },
   mounted() {
