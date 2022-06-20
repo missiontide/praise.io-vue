@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="song in matchedSongs">
+          <tr v-for="song in matchedSongs" :key="song.id">
             <td>{{song.title}}</td>
             <td>{{song.artist}}</td>
             <td>

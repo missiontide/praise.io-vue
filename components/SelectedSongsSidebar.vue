@@ -5,7 +5,7 @@
       <div class="px-3 py-2">
         <b-list-group-item variant="secondary">Selected Songs</b-list-group-item>
 
-        <b-list-group v-for="(song, index) in selectedSongs">
+        <b-list-group v-for="(song, index) in selectedSongs" :key="index">
           <b-list-group-item>
             {{song.title}} - {{song.artist}} <button @click="removeSong(index)">X</button>
           </b-list-group-item>
