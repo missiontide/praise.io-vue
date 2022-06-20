@@ -16,6 +16,7 @@
 import SongSearchBar from "./SongSearchBar";
 import SelectedSongsSidebar from "./SelectedSongsSidebar";
 import axios from "axios";
+import makeSlides from "~/utils/makeSlides";
 
 export default {
   name: "App",
@@ -50,8 +51,7 @@ export default {
       axios.get(
           'http://localhost:8080/song/lyrics?ids=' + selectedIds.join(',')
       ).then(response => {
-        console.log(response.data);
-        // console.log(JSON.parse(response.data[0]['lyrics']));
+        makeSlides(selectedIds, response.data);
       });
     }
   },
