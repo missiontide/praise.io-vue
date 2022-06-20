@@ -15,6 +15,7 @@
 <script>
 import SongSearchBar from "./SongSearchBar";
 import SelectedSongsSidebar from "./SelectedSongsSidebar";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -33,7 +34,10 @@ export default {
      * Loads the songs
      */
     loadSongs() {
-      this.songs = require("~/data-temp/songs.json")
+      axios.get('http://localhost:8080/song/all').then(response => {
+        this.songs = response.data;
+      });
+
     },
     /**
      * Sends all selected songs to slide maker util
