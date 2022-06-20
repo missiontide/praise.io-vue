@@ -32,16 +32,18 @@ export default {
   },
   methods: {
     /**
-     * Loads the songs
+     * Loads the songs from hosted yii API
      */
     loadSongs() {
-      axios.get('http://localhost:8080/song/all').then(response => {
+      axios.get(process.env.API_HOST + '/song/all').then(response => {
         this.songs = response.data;
       });
 
     },
     /**
-     * Sends all selected songs to slide maker util
+     * Gets the selected Song objects from hosted yii API
+     * Then Song objects to slide maker util
+     * The created PowerPoint Presentation is then downloaded
      */
     makeSlides() {
       if (this.selectedSongs.length === 0) return
@@ -49,7 +51,7 @@ export default {
       this.selectedSongs.forEach(song => selectedIds.push(song.id))
 
       axios.get(
-          'http://localhost:8080/song/lyrics?ids=' + selectedIds.join(',')
+          process.env.API_HOST + '/song/lyrics?ids=' + selectedIds.join(',')
       ).then(response => {
         makeSlides(selectedIds, response.data);
       });
