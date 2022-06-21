@@ -1,5 +1,6 @@
 <template>
   <div class="App">
+    <Logo />
     <SongSearchBar
       :allSongs="songs"
       @selectSong="(song) => this.selectedSongs.push(song)"
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+import Logo from './Logo';
 import SongSearchBar from "./SongSearchBar";
 import SelectedSongsSidebar from "./SelectedSongsSidebar";
 import axios from "axios";
