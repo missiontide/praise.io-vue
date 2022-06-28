@@ -66,5 +66,8 @@ export default {
 </script>
 
 <style scoped>
-
+.App {
+  text-align: center;
+  padding: 0;
+}
 </style>
